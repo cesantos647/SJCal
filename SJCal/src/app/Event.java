@@ -53,6 +53,12 @@ public class Event implements Comparable<Event>{
 		this.date = date;
 	}
 	
+	public Event(LocalDate date, RecurringEvent re) {
+		this.name = re.getName();
+		this.timeInterval = re.getTimeInterval();
+		this.date = date;
+	}
+	
 	/**
 	 * Gets the name.
 	 *
@@ -116,7 +122,7 @@ public class Event implements Comparable<Event>{
 	 */
 	@Override
 	public String toString() {
-		return getName() + "\n" + getTimeInterval() + " " + getDate().format(Event.DATEFORMATTER);
+		return getName() + ", " + getTimeInterval() + "\n";// + " " + getDate().format(Event.DATEFORMATTER);
 	}
 	
 }
