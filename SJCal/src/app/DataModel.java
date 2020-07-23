@@ -5,21 +5,39 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.TreeSet;
 
+/**
+ * The Class DataModel.
+ */
 public class DataModel {
+	
+	/** The one time events. */
 	private ArrayList<Event> oneTimeEvents;
+	
+	/** The recurring events. */
 	private ArrayList<RecurringEvent> recurringEvents;
+	
+	/** The today. */
 	private LocalDate today;
+	
+	/** The reference. */
 	private LocalDate reference;
-	private LocalDate currentCal;
+	
+	/** The current calendar view. */
+	private LocalDate calView;
+	
+	/** The style. */
 	private ViewStyle style;
 	
 	
+	/**
+	 * Instantiates a new data model.
+	 */
 	public DataModel() {
 		oneTimeEvents = new ArrayList<>();
 		recurringEvents = new ArrayList<>();
 		today = LocalDate.now();
 		reference = LocalDate.now();
-		currentCal = LocalDate.now();
+		calView = LocalDate.now();
 		style = ViewStyle.DAY;
 		
 		Event test = new Event("test", LocalTime.of(12, 0), LocalTime.of(15, 0), LocalDate.now());
@@ -30,30 +48,66 @@ public class DataModel {
 		oneTimeEvents.add(test3);
 	}
 	
+	/**
+	 * Sets the view style.
+	 *
+	 * @param newStyle the new view style
+	 */
 	public void setViewStyle(ViewStyle newStyle) {
 		style = newStyle;
 	}
 	
+	/**
+	 * Gets the reference.
+	 *
+	 * @return the reference
+	 */
 	public LocalDate getReference() {
 		return reference;
 	}
 	
+	/**
+	 * Gets the today.
+	 *
+	 * @return the today
+	 */
 	public LocalDate getToday() {
 		return today;
 	}
 	
+	/**
+	 * Gets the viewing calendar date.
+	 *
+	 * @return the viewing calendar date
+	 */
 	public LocalDate getCalDate() {
-		return currentCal;
+		return calView;
 	}
 	
+	/**
+	 * Sets the reference.
+	 *
+	 * @param date the new reference
+	 */
 	public void setReference(LocalDate date) {
 		reference = date;
 	}
 	
+	/**
+	 * Sets the viewing calendar date.
+	 *
+	 * @param date the new viewing calendar date
+	 */
 	public void setCalDate(LocalDate date) {
-		currentCal = date;
+		calView = date;
 	}
 	
+	/**
+	 * Gets the events.
+	 *
+	 * @param date the date
+	 * @return the events
+	 */
 	public String getEvents(LocalDate date) {
 		if(style == ViewStyle.DAY) {
 			return getDayEvents(date);
@@ -70,10 +124,23 @@ public class DataModel {
 
 	}
 	
+	/**
+	 * Gets the agenda events.
+	 *
+	 * @param startDate the start date
+	 * @param endDate the end date
+	 * @return the agenda events
+	 */
 	public String getAgendaEvents(LocalDate startDate, LocalDate endDate) {
 		return "";
 	}
 	
+	/**
+	 * Gets the day events.
+	 *
+	 * @param date the date
+	 * @return the day events
+	 */
 	public String getDayEvents(LocalDate date) {
 		TreeSet<Event> events = new TreeSet<>();
 		for(Event e : oneTimeEvents) {
@@ -93,17 +160,26 @@ public class DataModel {
 		return eventString;
 	}
 	
+	/**
+	 * Gets the week events.
+	 *
+	 * @param date the date
+	 * @return the week events
+	 */
 	public String getWeekEvents(LocalDate date) {
 		return "";
 	}
 	
+	/**
+	 * Gets the month events.
+	 *
+	 * @param date the date
+	 * @return the month events
+	 */
 	public String getMonthEvents(LocalDate date) {
 		return "";
 	}
 	
-	ArrayList<LocalDate> changeCurrentCal(int monthChange) {
-		return null;
-	}
 	
 	
 }
