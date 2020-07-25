@@ -113,15 +113,4 @@ public class RecurringEvent extends Event{
 	public boolean isWithin(LocalDate date) {
 		return date.isAfter(getStartDate()) && date.isBefore(getEndDate()) || date.isEqual(getStartDate()) || date.isEqual(getEndDate());
 	}
-
-	/**
-	 * Converts the RecurringEvent object to a readable string
-	 *
-	 * @return the readable string
-	 */
-/*	@Override
-	public String toString() {
-		return this.getName() + "\n" + days + " " + this.getTimeInterval() + " " + this.getStartDate().format(Event.DATEFORMATTER) + " " + this.getEndDate().format(Event.DATEFORMATTER);
-	}
-*/
 }

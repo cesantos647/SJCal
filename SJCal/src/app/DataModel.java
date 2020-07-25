@@ -9,15 +9,12 @@ import java.util.TreeSet;
  * The Class DataModel.
  */
 public class DataModel {
-	
+	//TODO add figures to make the code more understandable
 	/** The one time events. */
 	private ArrayList<Event> oneTimeEvents;
 	
 	/** The recurring events. */
 	private ArrayList<RecurringEvent> recurringEvents;
-	
-	/** The today. */
-	private LocalDate today;
 	
 	/** The reference. */
 	private LocalDate reference;
@@ -35,7 +32,6 @@ public class DataModel {
 	public DataModel() {
 		oneTimeEvents = new ArrayList<>();
 		recurringEvents = new ArrayList<>();
-		today = LocalDate.now();
 		reference = LocalDate.now();
 		calView = LocalDate.now();
 		style = ViewStyle.DAY;
@@ -71,9 +67,6 @@ public class DataModel {
 	 *
 	 * @return the today
 	 */
-	public LocalDate getToday() {
-		return today;
-	}
 	
 	/**
 	 * Gets the viewing calendar date.
@@ -109,6 +102,7 @@ public class DataModel {
 	 * @return the events
 	 */
 	public String getEvents(LocalDate date) {
+		//TODO: Add loggers to make debugging easier
 		if(style == ViewStyle.DAY) {
 			return getDayEvents(date);
 		}
