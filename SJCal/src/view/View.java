@@ -25,18 +25,18 @@ public class View {
         JScrollPane scrollPane = new JScrollPane( area );
 
         mainViewPanel.add(new JPanel(new FlowLayout(FlowLayout.CENTER, 0, 3)){{
-            add(createButtonWithEventListener(area, "Day", ViewStyle.DAY, data));
-            add(createButtonWithEventListener(area, "Week", ViewStyle.WEEK, data));
-            add(createButtonWithEventListener(area, "Month", ViewStyle.MONTH, data));
-            add(createButtonWithEventListener(area, "Agenda", ViewStyle.MONTH, data));
+            add(createButtonStyleChange(area, "Day", ViewStyle.DAY, data));
+            add(createButtonStyleChange(area, "Week", ViewStyle.WEEK, data));
+            add(createButtonStyleChange(area, "Month", ViewStyle.MONTH, data));
+            add(createButtonStyleChange(area, "Agenda", ViewStyle.MONTH, data));
         }});
         mainViewPanel.add(scrollPane, BorderLayout.PAGE_START);
 
         leftViewPanel.setLayout(new BoxLayout(leftViewPanel, BoxLayout.Y_AXIS));
         leftViewPanel.add(new JPanel(new FlowLayout(FlowLayout.LEFT, 0, 3)){{
-            //add(createButtonWithEventListener(area, "Today Button Clicked!", "Today", ));
-            //add(createButtonWithEventListener(area, "< Button Clicked!", "<"));
-            //add(createButtonWithEventListener(area, "> Button Clicked!", ">"));
+        	add(createButtonChangeReferenceDate(area, "Today", 0, data));
+            add(createButtonChangeReferenceDate(area, "<", -1, data));
+            add(createButtonChangeReferenceDate(area, ">", 1, data));
         }});
         //leftViewPanel.add(createButtonWithEventListener(area, "CREATE Button Clicked!", "CREATE"));
 
@@ -56,13 +56,27 @@ public class View {
         frame.setVisible(true);
     }
 
-    public static JButton createButtonWithEventListener(JTextArea componentToUpdate, String labelName,
+    public static JButton createButtonStyleChange(JTextArea componentToUpdate, String labelName,
                                                         ViewStyle style, DataModel data){
         return new JButton(labelName){{
             addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
                 	data.setViewStyle(style);
+                	String valueToUpdate = data.getEvents(data.getReference());
+                    componentToUpdate.setText(valueToUpdate);
+                }
+            });
+        }};
+    }
+    
+    public static JButton createButtonChangeReferenceDate(JTextArea componentToUpdate, String labelName, 
+    														int change, DataModel data) {
+    	return new JButton(labelName){{
+            addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                	data.changeReference(change);
                 	String valueToUpdate = data.getEvents(data.getReference());
                     componentToUpdate.setText(valueToUpdate);
                 }
