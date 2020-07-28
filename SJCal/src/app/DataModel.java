@@ -76,14 +76,6 @@ public class DataModel {
 		return calView;
 	}
 	
-	/**
-	 * Sets the reference.
-	 *
-	 * @param date the new reference
-	 */
-	public void setReference(LocalDate date) {
-		reference = date;
-	}
 	
 	/**
 	 * Change reference.
