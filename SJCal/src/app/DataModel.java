@@ -85,6 +85,11 @@ public class DataModel {
 		reference = date;
 	}
 	
+	/**
+	 * Change reference.
+	 *
+	 * @param change the change
+	 */
 	public void changeReference(int change) {
 		//Sets day to today
 		if(change == 0) {
@@ -114,6 +119,11 @@ public class DataModel {
 		calView = date;
 	}
 	
+	/**
+	 * Change cal date.
+	 *
+	 * @param change the change
+	 */
 	public void changeCalDate(int change) {
 		calView = calView.plusMonths(change);
 	}
@@ -222,6 +232,11 @@ public class DataModel {
 		return eventString;
 	}
 	
+	/**
+	 * Adds the event.
+	 *
+	 * @param newEvent the new recurring event
+	 */
 	public void addEvent(RecurringEvent newEvent) {
 		if(!checkEventConflicts(newEvent)) {
 			recurringEvents.add(newEvent);
@@ -231,6 +246,11 @@ public class DataModel {
 		}
 	}
 	
+	/**
+	 * Adds the event.
+	 *
+	 * @param newEvent the new event
+	 */
 	public void addEvent(Event newEvent) {
 		if(!checkEventConflicts(newEvent)) {
 			oneTimeEvents.add(newEvent);
@@ -243,7 +263,7 @@ public class DataModel {
 	
 	/**
 	 * Check if there are any event conflicts between the event passed
-	 * and the rest of the calendar
+	 * and the rest of the calendar.
 	 *
 	 * @param newEvent the new event
 	 * @return true, if there are any conflicts with an event on the calendar
@@ -268,6 +288,12 @@ public class DataModel {
 		return false;
 	}
 	
+	/**
+	 * Check event conflicts.
+	 *
+	 * @param newEvent the new event
+	 * @return true, if successful
+	 */
 	private boolean checkEventConflicts(RecurringEvent newEvent) {
 		for(Event e : oneTimeEvents) {
 			if(newEvent.isWithin(e.getDate()) 
@@ -292,6 +318,11 @@ public class DataModel {
 		return false;
 	}
 	
+	/**
+	 * Populate events.
+	 *
+	 * @param fileName the file name
+	 */
 	public void populateEvents(String fileName) {
 		try {
 			
