@@ -22,6 +22,7 @@ public class View {
         mainViewPanel.setLayout(new BoxLayout(mainViewPanel, BoxLayout.Y_AXIS));
 
         JTextArea area=new JTextArea(20,30);
+        area.setText(data.getDayEvents(data.getReference()));
         JScrollPane scrollPane = new JScrollPane( area );
 
         mainViewPanel.add(new JPanel(new FlowLayout(FlowLayout.CENTER, 0, 3)){{
