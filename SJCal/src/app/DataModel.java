@@ -15,6 +15,7 @@ import java.util.TreeSet;
  */
 public class DataModel {
 	//TODO add figures to make the code more understandable
+	
 	/** The one time events. */
 	private ArrayList<Event> oneTimeEvents;
 	
@@ -341,5 +342,9 @@ public class DataModel {
 			System.out.println("File not found");
 		}
 	}
-	
+	/*
+	public boolean hasEvent(LocalDate date) {
+		for(Event e : )
+	}
+	*/
 }
