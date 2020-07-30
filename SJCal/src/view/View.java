@@ -85,7 +85,7 @@ public class View {
         leftPanel.add(vc, BorderLayout.CENTER);
         leftPanel.add(leftViewPanel, BorderLayout.PAGE_START);
         rightViewPanel.setLayout(new BoxLayout(rightViewPanel, BoxLayout.Y_AXIS));
-        rightViewPanel.add(new JPanel(new FlowLayout()){{
+        rightViewPanel.add(new JPanel(new FlowLayout(FlowLayout.CENTER)){{
             //add(createButtonWithEventListener(area, "From File Button Clicked!", "From File"));
         	add(createButtonAdditionalFeature("One Time Event Info", data.getOneTimeEvents()));
         	add(createButtonAdditionalFeature("Recurring Event Info", data.getRecurringEvents()));
