@@ -6,8 +6,7 @@ public class RecurringEventList<E> extends TreeSet<E> implements EventList {
 
 	@Override
 	public String getData() {
-		// TODO Auto-generated method stub
-		return null;
+		return "There are " + this.size() + " recurring events in the calendar";
 	}
 
 }

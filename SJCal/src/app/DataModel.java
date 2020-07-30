@@ -6,21 +6,19 @@ import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.temporal.TemporalAdjusters;
-import java.util.ArrayList;
-import java.util.Scanner;
 import java.util.TreeSet;
+import java.util.Scanner;
 
 /**
  * The Class DataModel.
  */
 public class DataModel {
-	//TODO add figures to make the code more understandable
 	
 	/** The one time events. */
-	private ArrayList<Event> oneTimeEvents;
+	private OneTimeEventList<Event> oneTimeEvents;
 	
 	/** The recurring events. */
-	private ArrayList<RecurringEvent> recurringEvents;
+	private RecurringEventList<RecurringEvent> recurringEvents;
 	
 	/** The reference. */
 	private LocalDate reference;
@@ -36,8 +34,8 @@ public class DataModel {
 	 * Instantiates a new data model.
 	 */
 	public DataModel() {
-		oneTimeEvents = new ArrayList<>();
-		recurringEvents = new ArrayList<>();
+		oneTimeEvents = new OneTimeEventList<>();
+		recurringEvents = new RecurringEventList<>();
 		reference = LocalDate.now();
 		calView = LocalDate.now();
 		style = ViewStyle.DAY;
@@ -77,6 +75,13 @@ public class DataModel {
 		return calView;
 	}
 	
+	public OneTimeEventList<Event> getOneTimeEvents() {
+		return oneTimeEvents;
+	}
+	
+	public RecurringEventList<RecurringEvent> getRecurringEvents() {
+		return recurringEvents;
+	}
 	
 	/**
 	 * Change reference.

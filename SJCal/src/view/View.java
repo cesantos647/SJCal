@@ -4,6 +4,7 @@ import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 import app.DataModel;
+import app.EventList;
 import app.ViewStyle;
 
 import java.awt.*;
@@ -81,6 +82,8 @@ public class View {
         rightViewPanel.setLayout(new BoxLayout(rightViewPanel, BoxLayout.Y_AXIS));
         rightViewPanel.add(new JPanel(new FlowLayout(FlowLayout.LEFT, 0, 3)){{
             //add(createButtonWithEventListener(area, "From File Button Clicked!", "From File"));
+        	add(createButtonAdditionalFeature("One Time Event Info", data.getOneTimeEvents()));
+        	add(createButtonAdditionalFeature("Recurring Event Info", data.getRecurringEvents()));
         }});
 
         appViewPanel.setLayout(new FlowLayout());
@@ -120,5 +123,16 @@ public class View {
                 }
             });
         }};
+    }
+    
+    public static JButton createButtonAdditionalFeature(String labelName, EventList el) {
+    	return new JButton(labelName) {{
+    		addMouseListener(new MouseAdapter() {
+    			@Override
+    			public void mouseClicked(MouseEvent e) {
+    				JOptionPane.showMessageDialog(new JFrame(),el.getData(),"Events Information",JOptionPane.INFORMATION_MESSAGE);
+    			}
+    		});
+    	}};
     }
 }
