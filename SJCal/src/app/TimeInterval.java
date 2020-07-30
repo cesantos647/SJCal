@@ -64,7 +64,8 @@ public class TimeInterval {
 	 * @return true, if there is a time conflict between the TimeIntervals
 	 */
 	public boolean conflictsWith(TimeInterval that) {
-		return this.getStartTime().isBefore(that.getEndTime()) || this.getEndTime().isAfter(that.getStartTime());
+		return (this.getStartTime().isBefore(that.getEndTime()) && this.getStartTime().isAfter(that.getStartTime())) 
+				|| (this.getEndTime().isAfter(that.getStartTime()) && this.getEndTime().isBefore(that.getEndTime()));
 	}
 	
 	/**
