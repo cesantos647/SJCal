@@ -29,7 +29,16 @@ public class View {
             add(createButtonStyleChange(area, "Day", ViewStyle.DAY, data));
             add(createButtonStyleChange(area, "Week", ViewStyle.WEEK, data));
             add(createButtonStyleChange(area, "Month", ViewStyle.MONTH, data));
-            add(createButtonStyleChange(area, "Agenda", ViewStyle.MONTH, data));
+            add(new JButton("Agenda"){{
+                addMouseListener(new MouseAdapter() {
+                    @Override
+                    public void mouseClicked(MouseEvent e) {
+                    	data.setViewStyle(ViewStyle.AGENDA);
+                    	AgendaFrame agenda = new AgendaFrame(data, area);
+                    }
+                });
+            }});
+            //add(createButtonStyleChange(area, "Agenda", ViewStyle.MONTH, data));
         }});
         mainViewPanel.add(scrollPane, BorderLayout.PAGE_START);
 

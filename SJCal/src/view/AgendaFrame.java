@@ -7,14 +7,23 @@ package view;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.time.LocalDate;
+
 import javax.swing.*;
+
+import app.DataModel;
+import app.Event;
 public class AgendaFrame extends JFrame implements ActionListener {
    JPanel panel;
    JLabel startDate, endDate;
    JTextField start;
    JTextField end;
    JButton submit, cancel;
-   AgendaFrame() {
+   DataModel model;
+   JTextArea text;
+   public AgendaFrame(DataModel model, JTextArea text) {
+	  this.model = model;
+	  this.text = text;
       // Username Label
       startDate = new JLabel();
       startDate.setText("Start Date");
@@ -45,21 +54,24 @@ public class AgendaFrame extends JFrame implements ActionListener {
       setVisible(true);
       setResizable(false);
    }
-   public static void main(String[] args) {
-      new AgendaFrame();
-   }
    @Override
    public void actionPerformed(ActionEvent ae) {
-      String StartDate = start.getText();
-      String EndDate = start.getText();
+	  LocalDate startDate = LocalDate.parse(start.getText(), Event.DATEFORMATTER);
+	  LocalDate endDate = LocalDate.parse(end.getText(), Event.DATEFORMATTER);
       //get the format of the string and manipulate it
-      if(hasError(StartDate,EndDate)){
-          JOptionPane.showMessageDialog(new JFrame(),"Wrong format or Time conflict","Warning",JOptionPane.ERROR_MESSAGE);
+      if(!hasError(startDate,endDate)){
+          text.setText(model.getAgendaEvents(startDate, endDate));
+          this.setVisible(false);
+      }
+      else {
+    	  JOptionPane.showMessageDialog(new JFrame(),"There is a date conflict with your start time or end time","Warning",JOptionPane.ERROR_MESSAGE);
+    	  this.setVisible(false);
+    	  
       }
    }
    
-   public boolean hasError(String s,String e){
+   public boolean hasError(LocalDate s,LocalDate e){
        //TODO: somebody can fill the logic of hasError
-        return true;
+        return s.isBefore(e) || s.equals(e);
    }
 }

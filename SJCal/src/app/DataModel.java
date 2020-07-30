@@ -156,7 +156,7 @@ public class DataModel {
 	public String getAgendaEvents(LocalDate startDate, LocalDate endDate) {
 		LocalDate current = startDate;
 		String eventString = "";
-		while(!current.isEqual(endDate)) {
+		while(!current.isAfter(endDate)) {
 			eventString = eventString + this.getDayEvents(current);
 			current = current.plusDays(1);
 		}
