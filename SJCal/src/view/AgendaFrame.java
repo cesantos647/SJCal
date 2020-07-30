@@ -54,6 +54,7 @@ public class AgendaFrame extends JFrame implements ActionListener {
       setVisible(true);
       setResizable(false);
    }
+   
    @Override
    public void actionPerformed(ActionEvent ae) {
 	  LocalDate startDate = LocalDate.parse(start.getText(), Event.DATEFORMATTER);
