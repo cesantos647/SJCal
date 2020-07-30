@@ -1,6 +1,7 @@
 package view;
 
 import javax.swing.*;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 import app.DataModel;
 import app.ViewStyle;
@@ -8,6 +9,7 @@ import app.ViewStyle;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.File;
 
 public class View {
     public static void main(String[] args) {
@@ -35,6 +37,25 @@ public class View {
                     public void mouseClicked(MouseEvent e) {
                     	data.setViewStyle(ViewStyle.AGENDA);
                     	AgendaFrame agenda = new AgendaFrame(data, area);
+                    }
+                });
+            }});
+            add(new JButton("From file"){{
+                addMouseListener(new MouseAdapter() {
+                    @Override
+                    public void mouseClicked(MouseEvent e) {
+                        JFileChooser chooser = new JFileChooser();
+                        FileNameExtensionFilter filter = new FileNameExtensionFilter(
+                                "Text Files Only", "txt");
+                        chooser.setFileFilter(filter);
+                        int returnVal = chooser.showOpenDialog(null);
+                        if(returnVal == JFileChooser.APPROVE_OPTION) {
+                            String absFilePath = chooser.getSelectedFile().getAbsolutePath();
+                            System.out.println("You chose to open this file: " +
+                                    absFilePath);
+                            //controller handling calling to data model
+                            data.populateEvents(absFilePath);
+                        }
                     }
                 });
             }});

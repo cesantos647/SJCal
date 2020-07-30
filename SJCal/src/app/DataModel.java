@@ -322,12 +322,12 @@ public class DataModel {
 			
 			Scanner eventLoader = new Scanner(new File(fileName));
 			while(eventLoader.hasNextLine()) {
-				String[] params = eventLoader.nextLine().split(" ");
+				String[] params = eventLoader.nextLine().split(";");
 				String name = params[0];
 				int year = Integer.parseInt(params[1]);
 				int startMonth = Integer.parseInt(params[2]);
 				int endMonth = Integer.parseInt(params[3]);
-				LocalDate startDate = LocalDate.of(year, startMonth, 0);
+				LocalDate startDate = LocalDate.of(year, startMonth, 1);
 				LocalDate endDate = startDate.plusMonths(endMonth-startMonth+1).minusDays(1);
 				String days = params[4];
 				LocalTime startTime = LocalTime.of(Integer.parseInt(params[5]), 0);
