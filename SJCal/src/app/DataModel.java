@@ -107,6 +107,10 @@ public class DataModel {
 			System.out.println("An error has occurred");
 		}
 	}
+
+	public void setReference(LocalDate date) {
+		reference = date;
+	}
 	
 	/**
 	 * Sets the viewing calendar date.
@@ -200,8 +204,8 @@ public class DataModel {
 	 * @return the week events
 	 */
 	public String getWeekEvents(LocalDate date) {
-		LocalDate current = date.with(TemporalAdjusters.previousOrSame(DayOfWeek.MONDAY));
-		LocalDate endWeek = date.with(TemporalAdjusters.next(DayOfWeek.MONDAY));
+		LocalDate current = date.with(TemporalAdjusters.previousOrSame(DayOfWeek.SUNDAY));
+		LocalDate endWeek = date.with(TemporalAdjusters.next(DayOfWeek.SUNDAY));
 		String eventString = "";
 		while(!current.isEqual(endWeek)) {
 			eventString = eventString + this.getDayEvents(current);

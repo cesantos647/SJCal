@@ -21,6 +21,7 @@ public class View {
         JPanel mainViewPanel = new JPanel();
         JPanel leftViewPanel = new JPanel();
         JPanel rightViewPanel = new JPanel();
+        JPanel leftPanel = new JPanel();
 
         mainViewPanel.setLayout(new BoxLayout(mainViewPanel, BoxLayout.Y_AXIS));
 
@@ -63,36 +64,42 @@ public class View {
         }});
         mainViewPanel.add(scrollPane, BorderLayout.PAGE_START);
 
-        leftViewPanel.setLayout(new BoxLayout(leftViewPanel, BoxLayout.Y_AXIS));
+        //leftViewPanel.setLayout(new BoxLayout(leftViewPanel, BoxLayout.Y_AXIS));
+        //leftViewPanel.setLayout();
         leftViewPanel.add(new JPanel(new FlowLayout(FlowLayout.LEFT, 0, 3)){{
         	add(createButtonChangeReferenceDate(area, "Today", 0, data));
             add(createButtonChangeReferenceDate(area, "<", -1, data));
             add(createButtonChangeReferenceDate(area, ">", 1, data));
+            add(new JButton("Create"){{
+                addMouseListener(new MouseAdapter() {
+                    @Override
+                    public void mouseClicked(MouseEvent e) {
+                    	CreateFrame create = new CreateFrame(data, area);
+                    }
+                });
+            }});
         }});
-        //leftViewPanel.add(createButtonWithEventListener(area, "CREATE Button Clicked!", "CREATE"));
-        leftViewPanel.add(new JButton("Create"){{
-            addMouseListener(new MouseAdapter() {
-                @Override
-                public void mouseClicked(MouseEvent e) {
-                	CreateFrame create = new CreateFrame(data, area);
-                }
-            });
-        }});
-
+        
+        leftPanel.setLayout(new BorderLayout());
+        ViewingCalendar vc = new ViewingCalendar(data, area);
+        leftPanel.add(vc, BorderLayout.CENTER);
+        leftPanel.add(leftViewPanel, BorderLayout.PAGE_START);
         rightViewPanel.setLayout(new BoxLayout(rightViewPanel, BoxLayout.Y_AXIS));
-        rightViewPanel.add(new JPanel(new FlowLayout(FlowLayout.LEFT, 0, 3)){{
+        rightViewPanel.add(new JPanel(new FlowLayout()){{
             //add(createButtonWithEventListener(area, "From File Button Clicked!", "From File"));
         	add(createButtonAdditionalFeature("One Time Event Info", data.getOneTimeEvents()));
         	add(createButtonAdditionalFeature("Recurring Event Info", data.getRecurringEvents()));
         }});
 
-        appViewPanel.setLayout(new FlowLayout());
-        appViewPanel.add(leftViewPanel);
-        appViewPanel.add(mainViewPanel);
-        appViewPanel.add(rightViewPanel);
+        appViewPanel.setLayout(new BorderLayout());
+        //appViewPanel.add(leftViewPanel, BorderLayout.WEST);
+        appViewPanel.add(leftPanel, BorderLayout.WEST);
+        appViewPanel.add(mainViewPanel, BorderLayout.CENTER);
+        appViewPanel.add(rightViewPanel, BorderLayout.EAST);
 
         frame.add(appViewPanel);
-        frame.setSize(1000,600);
+        //frame.setSize(800,600);
+        frame.pack();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
     }
