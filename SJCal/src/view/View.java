@@ -59,7 +59,6 @@ public class View {
                     }
                 });
             }});
-            //add(createButtonStyleChange(area, "Agenda", ViewStyle.MONTH, data));
         }});
         mainViewPanel.add(scrollPane, BorderLayout.PAGE_START);
 
@@ -70,6 +69,14 @@ public class View {
             add(createButtonChangeReferenceDate(area, ">", 1, data));
         }});
         //leftViewPanel.add(createButtonWithEventListener(area, "CREATE Button Clicked!", "CREATE"));
+        leftViewPanel.add(new JButton("Create"){{
+            addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                	CreateFrame create = new CreateFrame(data, area);
+                }
+            });
+        }});
 
         rightViewPanel.setLayout(new BoxLayout(rightViewPanel, BoxLayout.Y_AXIS));
         rightViewPanel.add(new JPanel(new FlowLayout(FlowLayout.LEFT, 0, 3)){{

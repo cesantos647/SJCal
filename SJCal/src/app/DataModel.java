@@ -129,15 +129,12 @@ public class DataModel {
 	 */
 	public String getEvents(LocalDate date) {
 		if(style == ViewStyle.DAY) {
-			System.out.println("Day view was selected");
 			return getDayEvents(date);
 		}
 		else if(style == ViewStyle.WEEK) {
-			System.out.println("Week view was selected");
 			return getWeekEvents(date);
 		}
 		else if(style == ViewStyle.MONTH) {
-			System.out.println("Month view was selected");
 			return getMonthEvents(date);
 		}
 		else {
@@ -230,12 +227,14 @@ public class DataModel {
 	 *
 	 * @param newEvent the new recurring event
 	 */
-	public void addEvent(RecurringEvent newEvent) {
+	public boolean addEvent(RecurringEvent newEvent) {
 		if(!checkEventConflicts(newEvent)) {
 			recurringEvents.add(newEvent);
+			return true;
 		}
 		else {
 			System.out.println("There is a conflict. Please try again");
+			return false;
 		}
 	}
 	
@@ -244,13 +243,15 @@ public class DataModel {
 	 *
 	 * @param newEvent the new event
 	 */
-	public void addEvent(Event newEvent) {
+	public boolean addEvent(Event newEvent) {
 		if(!checkEventConflicts(newEvent)) {
 			oneTimeEvents.add(newEvent);
 			System.out.println("The event has successfully been added");
+			return true;
 		}
 		else {
 			System.out.println("There is a conflict. Please try again");
+			return false;
 		}
 	}
 	
@@ -334,7 +335,13 @@ public class DataModel {
 				LocalTime endTime = LocalTime.of(Integer.parseInt(params[6]), 0);
 				
 				RecurringEvent newEvent = new RecurringEvent(name, days, startTime, endTime, startDate, endDate);
-				addEvent(newEvent);				
+				boolean added = addEvent(newEvent);			
+				if(added) {
+					System.out.println(newEvent.getName() + " added in");
+				} 
+				else {
+					System.out.println(newEvent.getName() + " not added in");
+				}
 			}
 			eventLoader.close();
 			System.out.println("Loading is done!");
@@ -343,9 +350,4 @@ public class DataModel {
 			System.out.println("File not found");
 		}
 	}
-	/*
-	public boolean hasEvent(LocalDate date) {
-		for(Event e : )
-	}
-	*/
 }
