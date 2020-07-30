@@ -24,16 +24,15 @@ public class AgendaFrame extends JFrame implements ActionListener {
    public AgendaFrame(DataModel model, JTextArea text) {
 	  this.model = model;
 	  this.text = text;
-      // Username Label
-      startDate = new JLabel();
-      startDate.setText("Start Date");
+
+	  startDate = new JLabel();
+      startDate.setText("Start Date (M/d/yy)");
       startDate.setBounds(0,10,10,10);
       start = new JTextField(15);
       
-      // Password Label
       endDate = new JLabel();
       endDate.setBounds(0,10,10,10);
-      endDate.setText("End Date");
+      endDate.setText("End Date (M/d/yy)");
       end = new JTextField(15);
       
       // Submit
@@ -73,6 +72,6 @@ public class AgendaFrame extends JFrame implements ActionListener {
    
    public boolean hasError(LocalDate s,LocalDate e){
        //TODO: somebody can fill the logic of hasError
-        return s.isBefore(e) || s.equals(e);
+        return s.isAfter(e);
    }
 }
