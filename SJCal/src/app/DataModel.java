@@ -247,6 +247,7 @@ public class DataModel {
 	public void addEvent(Event newEvent) {
 		if(!checkEventConflicts(newEvent)) {
 			oneTimeEvents.add(newEvent);
+			System.out.println("The event has successfully been added");
 		}
 		else {
 			System.out.println("There is a conflict. Please try again");
