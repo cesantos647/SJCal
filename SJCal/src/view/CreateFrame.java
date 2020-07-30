@@ -4,11 +4,16 @@
  * and open the template in the editor.
  */
 package view;
-//import app.DataModel
+
 
 import java.awt.*;
 import java.awt.event.*;
+import java.time.LocalDate;
+import java.time.LocalTime;
+
 import javax.swing.*;
+import app.Event;
+import app.DataModel;
 public class CreateFrame extends JFrame implements ActionListener {
    JPanel panel;
    JLabel StartTime, EndTime,EventName,Date;
@@ -17,11 +22,11 @@ public class CreateFrame extends JFrame implements ActionListener {
    JTextField name;
    JTextField date;
    JButton submit, cancel;
-   //DataModel model;
-   JTextField text;
-   CreateFrame(JTextField text) {
+   DataModel model;
+   JTextArea text;
+   CreateFrame(DataModel model, JTextArea text) {
       
-      //this.model=model;
+      this.model=model;
       this.text=text;
       
       EventName=new JLabel();
@@ -34,7 +39,7 @@ public class CreateFrame extends JFrame implements ActionListener {
       StartTime.setBounds(0,10,10,10);
       start = new JTextField(15);
       
-      // Password Label
+      
       EndTime = new JLabel();
       EndTime.setBounds(0,10,10,10);
       EndTime.setText("End Time");
@@ -68,22 +73,33 @@ public class CreateFrame extends JFrame implements ActionListener {
       setResizable(false);
    }
    public static void main(String[] args) {
-      new CreateFrame(new JTextField());
+      new CreateFrame(new DataModel(), new JTextArea());
    }
    @Override
    public void actionPerformed(ActionEvent ae) {
-      String sTime = start.getText();
-      String eTime = end.getText();
-      String title= name.getText();
-      String d=date.getText();
+	   String title = name.getText();
+	   LocalTime startTime = LocalTime.parse(start.getText(), Event.TIMEFORMATTER);
+	   LocalTime endTime = LocalTime.parse(end.getText(), Event.TIMEFORMATTER);
+	   LocalDate d = LocalDate.parse(date.getText(), Event.DATEFORMATTER);
+      
       //get the format of the string and manipulate it
-      if(hasError(sTime,eTime,title,d)){
-          JOptionPane.showMessageDialog(new JFrame(),"Wrong format or Time conflict","Warning",JOptionPane.ERROR_MESSAGE);
+      if(!hasError(startTime,endTime)){
+    	  Event e = new Event(title, startTime, endTime, d);
+          boolean added = model.addEvent(e);
+          if(added) {
+        	  JOptionPane.showMessageDialog(new JFrame(),"Your event has successfully been added!","Success!",JOptionPane.INFORMATION_MESSAGE);
+              this.setVisible(false);
+          }
+          else {
+        	  JOptionPane.showMessageDialog(new JFrame(),"Wrong format or Time conflict","Warning",JOptionPane.ERROR_MESSAGE);
+          }
+      }
+      else {
+    	  JOptionPane.showMessageDialog(new JFrame(),"Wrong format or Time conflict","Warning",JOptionPane.ERROR_MESSAGE);
       }
    }
    
-   public boolean hasError(String startTime,String emdTime,String title,String date){
-       //TODO: somebody can fill the logic of hasError
-        return true;
+   public boolean hasError(LocalTime startTime,LocalTime endTime){
+        return startTime.isAfter(endTime);
    }
 }
