@@ -327,7 +327,8 @@ public class DataModel {
 	 *
 	 * @param fileName the file name
 	 */
-	public void populateEvents(String fileName) {
+	public boolean populateEvents(String fileName) {
+		boolean allGood = true;
 		try {
 			
 			Scanner eventLoader = new Scanner(new File(fileName));
@@ -350,6 +351,7 @@ public class DataModel {
 				} 
 				else {
 					System.out.println(newEvent.getName() + " not added in");
+					allGood = false;
 				}
 			}
 			eventLoader.close();
@@ -357,6 +359,8 @@ public class DataModel {
 		}
 		catch(FileNotFoundException e){
 			System.out.println("File not found");
+			allGood = false;
 		}
+		return allGood;
 	}
 }

@@ -12,7 +12,17 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class View.
+ */
 public class View {
+    
+    /**
+     * The main method.
+     *
+     * @param args the arguments
+     */
     public static void main(String[] args) {
     	DataModel data = new DataModel();
         JFrame frame = new JFrame();
@@ -27,6 +37,7 @@ public class View {
 
         JTextArea area=new JTextArea(20,30);
         area.setText(data.getDayEvents(data.getReference()));
+        area.setEditable(false);
         JScrollPane scrollPane = new JScrollPane( area );
 
         mainViewPanel.add(new JPanel(new FlowLayout(FlowLayout.CENTER, 0, 3)){{
@@ -56,7 +67,13 @@ public class View {
                             System.out.println("You chose to open this file: " +
                                     absFilePath);
                             //controller handling calling to data model
-                            data.populateEvents(absFilePath);
+                            boolean works = data.populateEvents(absFilePath);
+                            if(works) {
+                            	//Display message
+                            }
+                            else {
+                            	//Display error message
+                            }
                         }
                     }
                 });
@@ -104,6 +121,15 @@ public class View {
         frame.setVisible(true);
     }
 
+    /**
+     * Creates the button style change.
+     *
+     * @param componentToUpdate the component to update
+     * @param labelName the label name
+     * @param style the style
+     * @param data the data
+     * @return the j button
+     */
     public static JButton createButtonStyleChange(JTextArea componentToUpdate, String labelName,
                                                         ViewStyle style, DataModel data){
         return new JButton(labelName){{
@@ -118,6 +144,15 @@ public class View {
         }};
     }
     
+    /**
+     * Creates the button change reference date.
+     *
+     * @param componentToUpdate the component to update
+     * @param labelName the label name
+     * @param change the change
+     * @param data the data
+     * @return the j button
+     */
     public static JButton createButtonChangeReferenceDate(JTextArea componentToUpdate, String labelName, 
     														int change, DataModel data) {
     	return new JButton(labelName){{
@@ -132,6 +167,13 @@ public class View {
         }};
     }
     
+    /**
+     * Creates the button additional feature.
+     *
+     * @param labelName the label name
+     * @param el the el
+     * @return the j button
+     */
     public static JButton createButtonAdditionalFeature(String labelName, EventList el) {
     	return new JButton(labelName) {{
     		addMouseListener(new MouseAdapter() {
