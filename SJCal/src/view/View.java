@@ -13,7 +13,6 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class View.
  */

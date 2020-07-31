@@ -39,6 +39,12 @@ public class ViewingCalendar extends JPanel {
 				for(int i = 0 ; i < dateButtons.size(); i++) {
 					dateButtons.get(i).setDate(newDates.get(i));
 					dateButtons.get(i).setText(Integer.toString(newDates.get(i).getDayOfMonth()));
+					if(!dateButtons.get(i).getDate().getMonth().equals(model.getCalDate().getMonth())) {
+						dateButtons.get(i).setForeground(Color.GRAY);
+					}
+					else {
+						dateButtons.get(i).setForeground(Color.BLACK);
+					}
 				}
 			}
 			
@@ -54,6 +60,12 @@ public class ViewingCalendar extends JPanel {
 				for(int i = 0 ; i < dateButtons.size(); i++) {
 					dateButtons.get(i).setDate(newDates.get(i));
 					dateButtons.get(i).setText(Integer.toString(newDates.get(i).getDayOfMonth()));
+					if(!dateButtons.get(i).getDate().getMonth().equals(model.getCalDate().getMonth())) {
+						dateButtons.get(i).setForeground(Color.GRAY);
+					}
+					else {
+						dateButtons.get(i).setForeground(Color.BLACK);
+					}
 				}
 				
 			}
@@ -113,6 +125,9 @@ public class ViewingCalendar extends JPanel {
 				}
 			});
 			newButton.setPreferredSize(new Dimension(15,15));
+			if(!newButton.getDate().getMonth().equals(model.getCalDate().getMonth())) {
+				newButton.setForeground(Color.GRAY);
+			}
 			buttons.add(newButton);
 			current = current.plusDays(1);
 		}
