@@ -1,7 +1,6 @@
 package view;
 
-import java.awt.BorderLayout;
-import java.awt.GridLayout;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.DayOfWeek;
@@ -9,12 +8,8 @@ import java.time.LocalDate;
 import java.time.temporal.TemporalAdjusters;
 import java.util.ArrayList;
 
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTextArea;
-import javax.swing.SwingConstants;
+import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 
 import app.DataModel;
 
@@ -79,6 +74,7 @@ public class ViewingCalendar extends JPanel {
 		
 		JPanel calendarFrame = new JPanel();
 		calendarFrame.setLayout(new GridLayout(6, 7));
+		calendarFrame.setBorder(BorderFactory.createEmptyBorder());
 		
 		for(DateButton db : dateButtons) {
 			calendarFrame.add(db);
@@ -95,7 +91,7 @@ public class ViewingCalendar extends JPanel {
 		this.add(nonCalendarFrame, BorderLayout.PAGE_START);
 		this.add(calendarFrame, BorderLayout.CENTER);
 		
-		this.setSize(270,200);
+		this.setSize(100,50);
         //this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setVisible(true);
 	}
@@ -114,10 +110,9 @@ public class ViewingCalendar extends JPanel {
 				public void actionPerformed(ActionEvent e) {
 					model.setReference(newButton.getDate());
 					text.setText(model.getEvents(model.getReference()));
-					
 				}
-				
 			});
+			newButton.setPreferredSize(new Dimension(15,15));
 			buttons.add(newButton);
 			current = current.plusDays(1);
 		}

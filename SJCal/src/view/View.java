@@ -1,6 +1,7 @@
 package view;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 import app.DataModel;
@@ -32,6 +33,9 @@ public class View {
         JPanel leftViewPanel = new JPanel();
         JPanel rightViewPanel = new JPanel();
         JPanel leftPanel = new JPanel();
+        leftPanel.setBorder(new EmptyBorder(20,100,20,100));
+        rightViewPanel.setBorder(new EmptyBorder(20, 0,20,0));
+        mainViewPanel.setBorder(new EmptyBorder(20, 0,20,0));
 
         mainViewPanel.setLayout(new BoxLayout(mainViewPanel, BoxLayout.Y_AXIS));
 
