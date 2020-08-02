@@ -35,7 +35,7 @@ public class CreateFrame extends JFrame implements ActionListener {
       name=new JTextField(15);
       
       StartTime = new JLabel();
-      StartTime.setText("Start Time");
+      StartTime.setText("Start Time (E.g. )");
       StartTime.setBounds(0,10,10,10);
       start = new JTextField(15);
       
@@ -47,7 +47,7 @@ public class CreateFrame extends JFrame implements ActionListener {
       
       Date = new JLabel();
       Date.setBounds(0,10,10,10);
-      Date.setText("Date");
+      Date.setText("Date (E.g. 6/23/20)");
       date = new JTextField(15);
       // Submit
       submit = new JButton("SUBMIT");

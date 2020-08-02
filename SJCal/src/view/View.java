@@ -72,10 +72,10 @@ public class View {
                             //controller handling calling to data model
                             boolean works = data.populateEvents(absFilePath);
                             if(works) {
-                            	//Display message
+                            	JOptionPane.showMessageDialog(new JFrame(),"All events have successfully been added","Success",JOptionPane.INFORMATION_MESSAGE);
                             }
                             else {
-                            	//Display error message
+                            	JOptionPane.showMessageDialog(new JFrame(),"One or more events have a time conflict with other events in the calendar. All events that have no conflicts have been added","Warning",JOptionPane.INFORMATION_MESSAGE);
                             }
                         }
                     }
@@ -84,8 +84,6 @@ public class View {
         }});
         mainViewPanel.add(scrollPane, BorderLayout.PAGE_START);
 
-        //leftViewPanel.setLayout(new BoxLayout(leftViewPanel, BoxLayout.Y_AXIS));
-        //leftViewPanel.setLayout();
         leftViewPanel.add(new JPanel(new FlowLayout(FlowLayout.LEFT, 0, 3)){{
         	add(createButtonChangeReferenceDate(area, "Today", 0, data));
             add(createButtonChangeReferenceDate(area, "<", -1, data));

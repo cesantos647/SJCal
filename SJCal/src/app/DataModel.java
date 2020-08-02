@@ -39,13 +39,6 @@ public class DataModel {
 		reference = LocalDate.now();
 		calView = LocalDate.now();
 		style = ViewStyle.DAY;
-		
-		Event test = new Event("test", LocalTime.of(12, 0), LocalTime.of(15, 0), LocalDate.now());
-		Event test2 = new Event("test2", LocalTime.of(10, 0), LocalTime.of(11, 0), LocalDate.now());
-		Event test3 = new Event("test3", LocalTime.of(16, 0), LocalTime.of(18, 0), LocalDate.now());
-		oneTimeEvents.add(test);
-		oneTimeEvents.add(test2);
-		oneTimeEvents.add(test3);
 	}
 	
 	/**

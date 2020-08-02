@@ -26,13 +26,13 @@ public class AgendaFrame extends JFrame implements ActionListener {
 	  this.text = text;
 
 	  startDate = new JLabel();
-      startDate.setText("Start Date (M/d/yy)");
+      startDate.setText("Start Date (E.g. 4/15/20)");
       startDate.setBounds(0,10,10,10);
       start = new JTextField(15);
       
       endDate = new JLabel();
       endDate.setBounds(0,10,10,10);
-      endDate.setText("End Date (M/d/yy)");
+      endDate.setText("End Date (E.g. 4/23/20)");
       end = new JTextField(15);
       
       // Submit
