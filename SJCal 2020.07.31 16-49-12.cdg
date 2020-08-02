@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ClassDiagram name="SJCal">
+  <ClassDiagramComponents>
+    <Class name="DataModel" package="app" visibility="public" xPosition="292.0" yPosition="-35.0">
+      <Fields>
+        <Field name="oneTimeEvents" type="OneTimeEventList&lt;Event&gt;" visibility="private"/>
+        <Field name="recurringEvents" type="RecurringEventList&lt;RecurringEvent&gt;" visibility="private"/>
+        <Field name="reference" type="LocalDate" visibility="private"/>
+        <Field name="calView" type="LocalDate" visibility="private"/>
+        <Field name="style" type="ViewStyle" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="setViewStyle" returnType="void" visibility="public">
+          <Argument type="ViewStyle" name="newStyle"/>
+        </Method>
+        <Method name="getReference" returnType="LocalDate" visibility="public"/>
+        <Method name="getCalDate" returnType="LocalDate" visibility="public"/>
+        <Method name="getOneTimeEvents" returnType="OneTimeEventList&lt;Event&gt;" visibility="public"/>
+        <Method name="getRecurringEvents" returnType="RecurringEventList&lt;RecurringEvent&gt;" visibility="public"/>
+        <Method name="changeReference" returnType="void" visibility="public">
+          <Argument type="int" name="change"/>
+        </Method>
+        <Method name="setReference" returnType="void" visibility="public">
+          <Argument type="LocalDate" name="date"/>
+        </Method>
+        <Method name="setCalDate" returnType="void" visibility="public">
+          <Argument type="LocalDate" name="date"/>
+        </Method>
+        <Method name="changeCalDate" returnType="void" visibility="public">
+          <Argument type="int" name="change"/>
+        </Method>
+        <Method name="getEvents" returnType="String" visibility="public">
+          <Argument type="LocalDate" name="date"/>
+        </Method>
+        <Method name="getAgendaEvents" returnType="String" visibility="public">
+          <Argument type="LocalDate" name="startDate"/>
+          <Argument type="LocalDate" name="endDate"/>
+        </Method>
+        <Method name="getDayEvents" returnType="String" visibility="public">
+          <Argument type="LocalDate" name="date"/>
+        </Method>
+        <Method name="getWeekEvents" returnType="String" visibility="public">
+          <Argument type="LocalDate" name="date"/>
+        </Method>
+        <Method name="getMonthEvents" returnType="String" visibility="public">
+          <Argument type="LocalDate" name="date"/>
+        </Method>
+        <Method name="addEvent" returnType="boolean" visibility="public">
+          <Argument type="RecurringEvent" name="newEvent"/>
+        </Method>
+        <Method name="addEvent" returnType="boolean" visibility="public">
+          <Argument type="Event" name="newEvent"/>
+        </Method>
+        <Method name="checkEventConflicts" returnType="boolean" visibility="private">
+          <Argument type="Event" name="newEvent"/>
+        </Method>
+        <Method name="checkEventConflicts" returnType="boolean" visibility="private">
+          <Argument type="RecurringEvent" name="newEvent"/>
+        </Method>
+        <Method name="populateEvents" returnType="boolean" visibility="public">
+          <Argument type="String" name="fileName"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Event" package="app" visibility="public" xPosition="1185.0" yPosition="1276.0">
+      <Fields>
+        <Field name="name" type="String" visibility="private"/>
+        <Field name="timeInterval" type="TimeInterval" visibility="private"/>
+        <Field name="date" type="LocalDate" visibility="private"/>
+        <Field name="DATEFORMATTER" type="DateTimeFormatter" visibility="public" isStatic="true"/>
+        <Field name="TIMEFORMATTER" type="DateTimeFormatter" visibility="public" isStatic="true"/>
+        <Field name="FORMALDATEFORMATTER" type="DateTimeFormatter" visibility="public" isStatic="true"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="String" name="name"/>
+          <Argument type="LocalTime" name="st"/>
+          <Argument type="LocalTime" name="et"/>
+          <Argument type="LocalDate" name="date"/>
+        </Constructor>
+        <Constructor visibility="public">
+          <Argument type="LocalDate" name="date"/>
+          <Argument type="RecurringEvent" name="re"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getName" returnType="String" visibility="public"/>
+        <Method name="getTimeInterval" returnType="TimeInterval" visibility="public"/>
+        <Method name="getDate" returnType="LocalDate" visibility="public"/>
+        <Method name="compareTo" returnType="int" visibility="public">
+          <Argument type="Event" name="that"/>
+        </Method>
+        <Method name="equals" returnType="boolean" visibility="public">
+          <Argument type="Object" name="obj"/>
+        </Method>
+        <Method name="toString" returnType="String" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="OneTimeEventList" package="app" visibility="public" xPosition="1141.0" yPosition="176.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="getData" returnType="String" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="RecurringEvent" package="app" visibility="public" xPosition="1429.0" yPosition="876.0">
+      <Fields>
+        <Field name="days" type="String" visibility="private"/>
+        <Field name="startDate" type="LocalDate" visibility="private"/>
+        <Field name="endDate" type="LocalDate" visibility="private"/>
+        <Field name="daysOfWeek" type="HashSet&lt;DayOfWeek&gt;" visibility="private"/>
+        <Field name="dayConverter" type="HashMap&lt;String, DayOfWeek&gt;" visibility="private" isStatic="true" isFinal="true"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="String" name="name"/>
+          <Argument type="String" name="days"/>
+          <Argument type="LocalTime" name="st"/>
+          <Argument type="LocalTime" name="et"/>
+          <Argument type="LocalDate" name="startDate"/>
+          <Argument type="LocalDate" name="endDate"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getDaysOfWeek" returnType="HashSet&lt;DayOfWeek&gt;" visibility="public"/>
+        <Method name="getDays" returnType="String" visibility="public"/>
+        <Method name="getStartDate" returnType="LocalDate" visibility="public"/>
+        <Method name="getEndDate" returnType="LocalDate" visibility="public"/>
+        <Method name="isWithin" returnType="boolean" visibility="public">
+          <Argument type="LocalDate" name="date"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="RecurringEventList" package="app" visibility="public" xPosition="1752.0" yPosition="170.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="getData" returnType="String" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="TimeInterval" package="app" visibility="public" xPosition="1813.0" yPosition="1328.0">
+      <Fields>
+        <Field name="startTime" type="LocalTime" visibility="private"/>
+        <Field name="endTime" type="LocalTime" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="LocalTime" name="st"/>
+          <Argument type="LocalTime" name="et"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getStartTime" returnType="LocalTime" visibility="public"/>
+        <Method name="getEndTime" returnType="LocalTime" visibility="public"/>
+        <Method name="conflictsWith" returnType="boolean" visibility="public">
+          <Argument type="TimeInterval" name="that"/>
+        </Method>
+        <Method name="toString" returnType="String" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="AgendaFrame" package="view" visibility="public" xPosition="54.0" yPosition="1435.0">
+      <Fields>
+        <Field name="panel" type="JPanel" visibility="package"/>
+        <Field name="startDate" type="JLabel" visibility="package"/>
+        <Field name="start" type="JTextField" visibility="package"/>
+        <Field name="end" type="JTextField" visibility="package"/>
+        <Field name="submit" type="JButton" visibility="package"/>
+        <Field name="model" type="DataModel" visibility="package"/>
+        <Field name="text" type="JTextArea" visibility="package"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="DataModel" name="model"/>
+          <Argument type="JTextArea" name="text"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="actionPerformed" returnType="void" visibility="public">
+          <Argument type="ActionEvent" name="ae"/>
+        </Method>
+        <Method name="hasError" returnType="boolean" visibility="public">
+          <Argument type="LocalDate" name="s"/>
+          <Argument type="LocalDate" name="e"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="CreateFrame" package="view" visibility="public" xPosition="597.0" yPosition="971.0">
+      <Fields>
+        <Field name="panel" type="JPanel" visibility="package"/>
+        <Field name="StartTime" type="JLabel" visibility="package"/>
+        <Field name="start" type="JTextField" visibility="package"/>
+        <Field name="end" type="JTextField" visibility="package"/>
+        <Field name="name" type="JTextField" visibility="package"/>
+        <Field name="date" type="JTextField" visibility="package"/>
+        <Field name="submit" type="JButton" visibility="package"/>
+        <Field name="model" type="DataModel" visibility="package"/>
+        <Field name="text" type="JTextArea" visibility="package"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="package">
+          <Argument type="DataModel" name="model"/>
+          <Argument type="JTextArea" name="text"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="main" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String[]" name="args"/>
+        </Method>
+        <Method name="actionPerformed" returnType="void" visibility="public">
+          <Argument type="ActionEvent" name="ae"/>
+        </Method>
+        <Method name="hasError" returnType="boolean" visibility="public">
+          <Argument type="LocalTime" name="startTime"/>
+          <Argument type="LocalTime" name="endTime"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="DateButton" package="view" visibility="public" xPosition="367.0" yPosition="1258.0">
+      <Fields>
+        <Field name="date" type="LocalDate" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="LocalDate" name="date"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getDate" returnType="LocalDate" visibility="public"/>
+        <Method name="setDate" returnType="void" visibility="public">
+          <Argument type="LocalDate" name="newDate"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="View" package="view" visibility="public" xPosition="1378.0" yPosition="364.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="main" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String[]" name="args"/>
+        </Method>
+        <Method name="createButtonStyleChange" returnType="JButton" visibility="public" isStatic="true">
+          <Argument type="JTextArea" name="componentToUpdate"/>
+          <Argument type="String" name="labelName"/>
+          <Argument type="ViewStyle" name="style"/>
+          <Argument type="DataModel" name="data"/>
+        </Method>
+        <Method name="createButtonChangeReferenceDate" returnType="JButton" visibility="public" isStatic="true">
+          <Argument type="JTextArea" name="componentToUpdate"/>
+          <Argument type="String" name="labelName"/>
+          <Argument type="int" name="change"/>
+          <Argument type="DataModel" name="data"/>
+        </Method>
+        <Method name="createButtonAdditionalFeature" returnType="JButton" visibility="public" isStatic="true">
+          <Argument type="String" name="labelName"/>
+          <Argument type="EventList" name="el"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="ViewingCalendar" package="view" visibility="public" xPosition="309.0" yPosition="755.0">
+      <Fields>
+        <Field name="model" type="DataModel" visibility="private"/>
+        <Field name="dateButtons" type="ArrayList&lt;DateButton&gt;" visibility="private"/>
+        <Field name="text" type="JTextArea" visibility="package"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="DataModel" name="model"/>
+          <Argument type="JTextArea" name="text"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getButtons" returnType="ArrayList&lt;DateButton&gt;" visibility="public"/>
+        <Method name="getDates" returnType="ArrayList&lt;LocalDate&gt;" visibility="public">
+          <Argument type="LocalDate" name="date"/>
+        </Method>
+        <Method name="main" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String[]" name="args"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Interface name="EventList" package="app" visibility="public" xPosition="1477.0" yPosition="176.0">
+      <Methods>
+        <Method name="getData" returnType="String" visibility="public"/>
+      </Methods>
+    </Interface>
+    <Enum name="ViewStyle" package="app" visibility="public" xPosition="35.0" yPosition="53.0">
+      <Literals>
+        <Literal name="DAY"/>
+        <Literal name="WEEK"/>
+        <Literal name="MONTH"/>
+        <Literal name="AGENDA"/>
+      </Literals>
+    </Enum>
+  </ClassDiagramComponents>
+  <ClassDiagramRelations>
+    <UseRelation source="view.View" target="app.DataModel" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="oneTimeEvents" source="app.DataModel" target="app.Event" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="OneTimeEventList&lt;Event&gt;"/>
+    <UseRelation source="app.TimeInterval" target="app.TimeInterval" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="app.DataModel" target="view.View" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="view.View" target="app.EventList" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="app.DataModel" target="app.OneTimeEventList" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="view.AgendaFrame" target="app.Event" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="view.View" target="view.View" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="app.Event" target="app.TimeInterval" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <ImplementsRelation name="&lt;&lt;implements&gt;&gt;" source="app.RecurringEventList" target="app.EventList"/>
+    <UseRelation source="view.CreateFrame" target="app.Event" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="view.ViewingCalendar" target="view.DateButton" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="timeInterval" source="app.Event" target="app.TimeInterval" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="model" source="view.CreateFrame" target="app.DataModel" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="app.DataModel" target="app.RecurringEvent" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <ImplementsRelation name="&lt;&lt;implements&gt;&gt;" source="app.OneTimeEventList" target="app.EventList"/>
+    <HasRelation name="model" source="view.ViewingCalendar" target="app.DataModel" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="app.DataModel" target="app.RecurringEventList" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="recurringEvents" source="app.DataModel" target="app.RecurringEvent" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="RecurringEventList&lt;RecurringEvent&gt;"/>
+    <HasRelation name="model" source="view.AgendaFrame" target="app.DataModel" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="app.Event" target="app.Event" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="app.DataModel" target="app.Event" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="app.RecurringEvent" target="app.Event"/>
+    <HasRelation name="dateButtons" source="view.ViewingCalendar" target="view.DateButton" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="ArrayList&lt;DateButton&gt;"/>
+    <HasRelation name="style" source="app.DataModel" target="app.ViewStyle" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+  </ClassDiagramRelations>
+</ClassDiagram>
