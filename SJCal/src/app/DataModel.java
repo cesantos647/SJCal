@@ -282,6 +282,9 @@ public class DataModel {
 				System.out.println(e.getName() + " conflicts");
 				return true;
 			}
+			if(e.equals(newEvent)) {
+				return true;
+			}
 		}
 		for(RecurringEvent re : recurringEvents) {
 			if(re.getTimeInterval().conflictsWith(newEvent.getTimeInterval())) {
@@ -316,10 +319,13 @@ public class DataModel {
 					for(DayOfWeek day : newEvent.getDaysOfWeek()) {
 						if(re.getDaysOfWeek().contains(day)) {
 							System.out.println(re.getName() + " conflicts");
-							return false;
+							return true;
 						}
 					}
 				}
+			}
+			if(re.equals(newEvent)) {
+				return true;
 			}
 		}
 		return false;
