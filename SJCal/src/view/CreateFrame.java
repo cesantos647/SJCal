@@ -69,14 +69,14 @@ public class CreateFrame extends JFrame implements ActionListener {
       name=new JTextField(15);
       
       StartTime = new JLabel();
-      StartTime.setText("Start Time (E.g. )");
+      StartTime.setText("Start Time (E.g. 7:53)");
       StartTime.setBounds(0,10,10,10);
       start = new JTextField(15);
       
       
       EndTime = new JLabel();
       EndTime.setBounds(0,10,10,10);
-      EndTime.setText("End Time");
+      EndTime.setText("End Time (E.g. 14:22)");
       end = new JTextField(15);
       
       Date = new JLabel();
