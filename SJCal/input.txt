@@ -2,3 +2,9 @@ Math Class;2014;1;2;MWF;17;18;
 CS151 Class;2016;6;8;MW;6;11;
 CS146 Class;2017;6;8;MW;13;15;
 CS180 Class;2019;6;8;M;0;1;
+Soccer Game Day;2020;6;8;FAS;12;14;
+Mentor Weekly Sync Up;2021;1;3;S;8;10;
+Weekend Cooking;2020;1;12;AS;16;18;
+Board Game Night;2020;10;12;S;20;22
+Family Gathering;2020;6;8;MWF;18;20;
+Dating;2020;5;7;MW;20;22
