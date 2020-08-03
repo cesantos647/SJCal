@@ -1,7 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * AgendaFrame Class
+ *  @author Siyuan Li
+ *  @author Christian Santos
+ *  
+ *  @version 1.0.0 07/27/20
+ *  
+ *  Copyright SJCal to Present
+ *  All rights reserved
  */
 package view;
 
@@ -13,14 +18,39 @@ import javax.swing.*;
 
 import app.DataModel;
 import app.Event;
+
+/**
+ * The Class AgendaFrame.
+ */
 public class AgendaFrame extends JFrame implements ActionListener {
+   
+   /** The panel. */
    JPanel panel;
+   
+   /** The end date. */
    JLabel startDate, endDate;
+   
+   /** The start. */
    JTextField start;
+   
+   /** The end. */
    JTextField end;
+   
+   /** The cancel, submit buttons */
    JButton submit, cancel;
+   
+   /** The model. */
    DataModel model;
+   
+   /** The text. */
    JTextArea text;
+   
+   /**
+    * Instantiates a new agenda frame.
+    *
+    * @param model the model
+    * @param text the text
+    */
    public AgendaFrame(DataModel model, JTextArea text) {
 	  this.model = model;
 	  this.text = text;
@@ -54,6 +84,11 @@ public class AgendaFrame extends JFrame implements ActionListener {
       setResizable(false);
    }
    
+   /**
+    * Action to get the events for the Agenda
+    *
+    * @param ae the action event
+    */
    @Override
    public void actionPerformed(ActionEvent ae) {
 	  LocalDate startDate = LocalDate.parse(start.getText(), Event.DATEFORMATTER);
@@ -70,8 +105,14 @@ public class AgendaFrame extends JFrame implements ActionListener {
       }
    }
    
+   /**
+    * Checks for error.
+    *
+    * @param s the start date
+    * @param e the end date
+    * @return true, if start date is after the end date
+    */
    public boolean hasError(LocalDate s,LocalDate e){
-       //TODO: somebody can fill the logic of hasError
         return s.isAfter(e);
    }
 }

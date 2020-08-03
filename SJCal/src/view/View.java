@@ -1,3 +1,13 @@
+/**
+ * View Class
+ *  @author Nhan Le
+ *  @author Christian Santos
+ *  
+ *  @version 1.0.0 08/01/20
+ *  
+ *  Copyright SJCal to Present
+ *  All rights reserved
+ */
 package view;
 
 import javax.swing.*;
@@ -14,12 +24,12 @@ import java.awt.event.MouseEvent;
 import java.io.File;
 
 /**
- * The Class View.
+ * The Class View. This contains the whole GUI for the application
  */
 public class View {
     
     /**
-     * The main method.
+     * The main method. This holds the whole GUI for the application
      *
      * @param args the arguments
      */
@@ -104,19 +114,16 @@ public class View {
         leftPanel.add(leftViewPanel, BorderLayout.PAGE_START);
         rightViewPanel.setLayout(new BoxLayout(rightViewPanel, BoxLayout.Y_AXIS));
         rightViewPanel.add(new JPanel(new FlowLayout(FlowLayout.CENTER)){{
-            //add(createButtonWithEventListener(area, "From File Button Clicked!", "From File"));
         	add(createButtonAdditionalFeature("One Time Event Info", data.getOneTimeEvents()));
         	add(createButtonAdditionalFeature("Recurring Event Info", data.getRecurringEvents()));
         }});
 
         appViewPanel.setLayout(new BorderLayout());
-        //appViewPanel.add(leftViewPanel, BorderLayout.WEST);
         appViewPanel.add(leftPanel, BorderLayout.WEST);
         appViewPanel.add(mainViewPanel, BorderLayout.CENTER);
         appViewPanel.add(rightViewPanel, BorderLayout.EAST);
 
         frame.add(appViewPanel);
-        //frame.setSize(800,600);
         frame.pack();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);

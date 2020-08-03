@@ -1,3 +1,13 @@
+/**
+ * AgendaFrame Class
+ *  @author Siyuan Li
+ *  @author Christian Santos
+ *  
+ *  @version 1.0.0 07/31/20
+ * 
+ *  Copyright SJCal to Present
+ *  All rights reserved
+ */
 package view;
 
 import java.awt.*;
@@ -13,16 +23,30 @@ import javax.swing.border.EmptyBorder;
 
 import app.DataModel;
 
+/**
+ * The Class ViewingCalendar.
+ */
 public class ViewingCalendar extends JPanel {
+	
+	/** The model. */
 	private DataModel model;
+	
+	/** The date buttons. */
 	private ArrayList<DateButton> dateButtons;
+	
+	/** The text. */
 	JTextArea text;
 	
+	/**
+	 * Instantiates a new viewing calendar.
+	 *
+	 * @param model the model
+	 * @param text the text
+	 */
 	public ViewingCalendar(DataModel model, JTextArea text) {
 		this.model = model;
 		this.text = text;
 		dateButtons = getButtons();
-		System.out.println(dateButtons.size());
 		
 		this.setLayout(new BorderLayout());
 		JPanel nonCalendarFrame = new JPanel();
@@ -32,7 +56,6 @@ public class ViewingCalendar extends JPanel {
 		leftButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("Left button pressed");
 				model.changeCalDate(-1);
 				header.setText(model.getCalDate().getMonth() + " " + model.getCalDate().getYear());
 				ArrayList<LocalDate> newDates = getDates(model.getCalDate());
@@ -53,7 +76,6 @@ public class ViewingCalendar extends JPanel {
 		rightButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("Right button pressed");
 				model.changeCalDate(1);
 				header.setText(model.getCalDate().getMonth() + " " + model.getCalDate().getYear());
 				ArrayList<LocalDate> newDates = getDates(model.getCalDate());
@@ -108,6 +130,11 @@ public class ViewingCalendar extends JPanel {
         this.setVisible(true);
 	}
 	
+	/**
+	 * Gets the buttons for the Viewing Calendar.
+	 *
+	 * @return the buttons
+	 */
 	public ArrayList<DateButton> getButtons() {
 		ArrayList<DateButton> buttons = new ArrayList<>();
 		//Get first day of month, then finds the date of the Monday of that week
@@ -134,6 +161,12 @@ public class ViewingCalendar extends JPanel {
 		return buttons;
 	}
 	
+	/**
+	 * Gets the dates for the Viewing Calendar.
+	 *
+	 * @param date the date
+	 * @return the dates
+	 */
 	public ArrayList<LocalDate> getDates(LocalDate date) {
 		ArrayList<LocalDate> dates = new ArrayList<>();
 		//Get first day of month, then finds the date of the Monday of that week
@@ -146,10 +179,6 @@ public class ViewingCalendar extends JPanel {
 			current = current.plusDays(1);
 		}
 		return dates;
-	}
-	
-	public static void main(String[] args) {
-		ViewingCalendar vc = new ViewingCalendar(new DataModel(), new JTextArea());
 	}
 
 }

@@ -1,3 +1,13 @@
+/**
+ * DataModel Class
+ *  @author Christian Santos
+ *  
+ *  @version 1.0.0 07/27/20
+ *  
+ *  Copyright Christian Santos to Present
+ *  All rights reserved
+ */
+
 package app;
 
 import java.io.File;
@@ -166,7 +176,7 @@ public class DataModel {
 	 * Gets the day events.
 	 *
 	 * @param date the date
-	 * @return the day events
+	 * @return the day's events
 	 */
 	public String getDayEvents(LocalDate date) {
 		TreeSet<Event> events = new TreeSet<>();
@@ -194,7 +204,7 @@ public class DataModel {
 	 * Gets the week events.
 	 *
 	 * @param date the date
-	 * @return the week events
+	 * @return the week's events
 	 */
 	public String getWeekEvents(LocalDate date) {
 		LocalDate current = date.with(TemporalAdjusters.previousOrSame(DayOfWeek.SUNDAY));
@@ -211,7 +221,7 @@ public class DataModel {
 	 * Gets the month events.
 	 *
 	 * @param date the date
-	 * @return the month events
+	 * @return the month's events
 	 */
 	public String getMonthEvents(LocalDate date) {
 		LocalDate current = date.with(TemporalAdjusters.firstDayOfMonth());
@@ -225,7 +235,7 @@ public class DataModel {
 	}
 	
 	/**
-	 * Adds the event.
+	 * Adds the RecurringEvent.
 	 *
 	 * @param newEvent the new recurring event
 	 */
@@ -241,7 +251,7 @@ public class DataModel {
 	}
 	
 	/**
-	 * Adds the event.
+	 * Adds the Event.
 	 *
 	 * @param newEvent the new event
 	 */
@@ -316,9 +326,9 @@ public class DataModel {
 	}
 	
 	/**
-	 * Populate events.
+	 * Populate events from a file.
 	 *
-	 * @param fileName the file name
+	 * @param fileName the file path
 	 */
 	public boolean populateEvents(String fileName) {
 		boolean allGood = true;
